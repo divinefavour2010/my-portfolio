@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My CV</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+    }
+
+    .container {
+      width: 800px;
+      margin: 20px auto;
+      padding: 30px;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    h1, h2, h3 {
+      color: #333;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #4a90e2;
+    }
+
+    .header p {
+      font-size: 18px;
+      margin-top: 5px;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .job, .education-entry {
+      margin-bottom: 15px;
+    }
+
+    .skills {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .skills li {
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4a90e2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="cvContent">
+    <!-- Header -->
+    <div class="header">
+      <h1>Ibenye Divinefavour Ifeanyichukwu</h1>
+      <div>
+        <p>Phone: +2347079243906</p>
+        <p>Email: jacedivine82@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info">
+      <div><strong>Location:</strong> Nigeria, Abia state</div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="section">
+      <h2>Work Experience</h2>
+      <div class="job">
+        <h3>Junior Developer | Coach Lorgics Corp</h3>
+        <p><strong>January 2020 - Present</strong></p>
+        <p>Lead development team in creating cutting-edge web applications using modern frameworks.</p>
+      </div>
+      <div class="job">
+        <h3>Junior Developer | ABC Inc</h3>
+        <p><strong>June 2022 - December 2023</strong></p>
+        <p>Developed front-end components and worked with back-end teams to integrate APIs.</p>
+      </div>
+    </div>
+
+    <!-- Objective -->
+    <div class="section">
+      <h2>Objective</h2>
+      <p>To secure a senior developer position in a dynamic and growth-oriented organisation where I can apply my skills and knowledge to contribute to innovative projects and continue learning.</p>
+    </div>
+
+    <!-- Education Section -->
+    <div class="section">
+      <h2>Education</h2>
+      <div class="education-entry">
+        <h3>Bachelor's Degree in Computer Science | University of Logic Academy</h3>
+        <p><strong>Graduated: Not Yet</strong></p>
+      </div>
+      <div class="education-entry">
+        <h3>Relevant coursework: Database Systems, Web Development | University of Logic Academy</h3>
+        <p><strong>Graduated: 2025</strong></p>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="section">
+      <h2>Skills</h2>
+      <ul class="skills">
+        <li>JavaScript (ES6+)</li>
+        <li>React & Redux</li>
+        <li>Node.js</li>
+        <li>HTML5 & CSS3</li>
+        <li>Git & Version Control</li>
+      </ul>
+    </div>
+
+    <!-- References -->
+    <div class="section">
+      <h2>References</h2>
+      <p>Available upon request</p>
+    </div>
+
+    <!-- Download PDF Button -->
+    <a href="#pdf" class="button" id="downloadBtn">Download PDF</a>
+  </div>
+
+  <!-- jsPDF & html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script>
+    document.getElementById('downloadBtn').addEventListener('click', async function () {
+      const { jsPDF } = window.jspdf;
+      const cv = document.getElementById("cvContent");
+
+      // Use html2canvas to capture CV content as image
+      const canvas = await html2canvas(cv);
+      const imgData = canvas.toDataURL("image/png");
+
+      // Create PDF
+      const pdf = new jsPDF("p", "pt", "a4");
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      // Resize image to fit A4
+      const imgWidth = pageWidth - 40; 
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 20, 20, imgWidth, imgHeight);
+      pdf.save("My_CV.pdf");
+    });
+  </script>
+
+</body>
+</html>
