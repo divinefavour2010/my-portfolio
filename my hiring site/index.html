@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Portfolio</title>
+  <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #222;
+      --primary: #4a90e2;
+      --card: #fff;
+    }
+    body.dark {
+      --bg: #1a1a1a;
+      --text: #eee;
+      --primary: #4a90e2;
+      --card: #2a2a2a;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      box-shadow: 0 2px 5px red;
+      z-index: 1000;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: bold;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .hero h1 { font-size: 2.5rem; }
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .card {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    button, .btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    button:hover, .btn:hover { background: #357ab7; }
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      background: var(--card);
+      color: var(--text);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--bg);
+      border-top: 1px solid #ccc;
+    }
+    .socials {
+      margin-top: 1rem;
+    }
+    .socials a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 1.4rem;
+      color: var(--text);
+      transition: color 0.3s;
+    }
+    .socials a:hover { color: var(--primary); }
+
+    /* Project Cards with Hover Overlay */
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover img {
+      transform: scale(1.1);
+    }
+    .project-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .project-card:hover .project-info {
+      opacity: 1;
+    }
+    .project-info h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .project-info p {
+      margin: 5px 0 0;
+      font-size: 0.9rem;
+    }
+
+    /* Profile Picture */
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--primary);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="./{B405F6C2-814E-434B-8AA3-60C0C9F71324}.png.jpg" alt="Brand Logo" style="width: 3rem; height: 3rem; border-radius: 50%;"/></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="themeToggle">🌙</button>
+  </header>
+
+  <div class="hero">
+    <!-- Profile Picture -->
+    <div class="profile-pic">
+      <img src="your-picture.jpg" alt="Your Picture">
+    </div>
+
+    <h1>Hello, I'm <span style="color:var(--primary)">Ibenye Divinefavour Ifeanyichukwu</span></h1>
+    <p>Web Developer | Designer | Programmer</p>
+    <a href="#contact" class="btn">Hire Me</a>
+    <a href="cv.html" download class="btn">📄 Download CV</a>
+  </div>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a passionate developer skilled in creating beautiful and functional websites. I enjoy solving problems and building useful projects.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+      <div class="project-card">
+        <img src="speach.jpg" alt="Project One">
+        <div class="project-info">
+          <h3>The text to speach/speach to text Project</h3>
+          <p>I created this for most news brodcastors who dont have thime to type there work.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="{B405F6C2-814E-434B-8AA3-60C0C9F71324}.png.jpg" alt="Project Two">
+        <div class="project-info">
+          <h3>The calculator Project</h3>
+          <p>My home made calculator for my pc.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="{BBF15041-1E60-420D-B7BC-FB5C7DCEE116}.png.jpg" alt="Project Three">
+        <div class="project-info">
+          <h3>The charting site Project</h3>
+          <p>A charting site i created for my family useing only using html, css and javascript.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="grid">
+      <div class="card">HTML</div>
+      <div class="card">CSS</div>
+      <div class="card">JavaScript</div>
+      <div class="card">React</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form action="mailto:your@email.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div class="socials">
+      <a href="https://github.com/yourprofile" target="_blank">🐙 GitHub</a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">💼 LinkedIn</a>
+      <a href="https://twitter.com/yourprofile" target="_blank">🐦 Twitter</a>
+      <a href="https://instagram.com/yourprofile" target="_blank">📸 Instagram</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Codex. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    if(localStorage.getItem('theme') === 'dark'){
+      document.body.classList.add('dark');
+      toggle.textContent = '☀️';
+    }
+    toggle.onclick = () => {
+      document.body.classList.toggle('dark');
+      if(document.body.classList.contains('dark')){
+        localStorage.setItem('theme','dark');
+        toggle.textContent = '☀️';
+      } else {
+        localStorage.setItem('theme','light');
+        toggle.textContent = '🌙';
+      }
+    }
+  </script>
+</body>
+</html>
